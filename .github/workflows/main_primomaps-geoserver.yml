@@ -43,7 +43,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: java-app
-        working-directory: ./src
+        #working-directory: ./src
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
