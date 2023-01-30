@@ -22,8 +22,8 @@ jobs:
           java-version: '17'
     
       - name: Build with Maven
-#        working-directory: ./src
-        run: mvn package --file ./src/pom.xml
+        working-directory: ./src
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -43,7 +43,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: java-app
-
+        working-directory: ./src
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -51,4 +51,4 @@ jobs:
           app-name: 'primomaps-geoserver'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BC4AD0E2914B4F5790C019E1604A5CD7 }}
-          package: '*.war'
+          package: '*.jar'
