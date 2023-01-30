@@ -22,8 +22,8 @@ jobs:
           java-version: '17'
     
       - name: Build with Maven
-        #working-directory: ./src
-        run: mvn clean install --file ./src/pom.xml
+        working-directory: ./src
+        run: mvn clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
